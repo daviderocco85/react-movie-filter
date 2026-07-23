@@ -3,12 +3,12 @@ import { useState, useEffect } from 'react';
 import './App.css';
 
 const movies = [
-  { title: 'Inception', genre: 'Fantascienza' },
-  { title: 'Il Padrino', genre: 'Thriller' },
-  { title: 'Titanic', genre: 'Romantico' },
-  { title: 'Batman', genre: 'Azione' },
-  { title: 'Interstellar', genre: 'Fantascienza' },
-  { title: 'Pulp Fiction', genre: 'Thriller' },
+  { id: 1, title: 'Inception', genre: 'Fantascienza' },
+  { id: 2, title: 'Il Padrino', genre: 'Thriller' },
+  { id: 3, title: 'Titanic', genre: 'Romantico' },
+  { id: 4, title: 'Batman', genre: 'Azione' },
+  { id: 5, title: 'Interstellar', genre: 'Fantascienza' },
+  { id: 6, title: 'Pulp Fiction', genre: 'Thriller' },
 ];
 
 
@@ -39,8 +39,8 @@ export const App = () => {
         <h1>La mia lista di Film</h1>
         <input type="text" placeholder='Filtra per titolo' value={titleFilter} onChange={e => setTitleFilter(e.target.value)} />
         <ul>
-          {filteredMovies.map((movie, index) => (
-            <li key={index}>{movie.title}</li>
+          {filteredMovies.map((movie) => (
+            <li key={movie.id}>{movie.title}</li>
           ))}
         </ul>
         <p>Scegli i film per genere</p>
@@ -51,6 +51,7 @@ export const App = () => {
           <option value="Romantico">Romantico</option>
           <option value="Thriller">Thriller</option>
         </select>
+
       </div>
     </>
   )
