@@ -3,6 +3,7 @@ import { FilterTitleMovie } from './components/FilterTitleMovie';
 import { FilterGenreMovie } from './components/FilterGenreMovie';
 import './App.css';
 import { MoviesList } from './components/MoviesList';
+import { AddNewMovieForm } from './components/AddNewMovieForm';
 
 
 
@@ -28,15 +29,16 @@ export const App = () => {
     genre: ""
   });
 
-  const movieToAdd = {
-    id: moviesListUpdated.length + 1,
-    title: newMovie.title.trim(),
-    genre: newMovie.genre
-  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const movieToAdd = {
+      id: moviesListUpdated.length + 1,
+      title: newMovie.title.trim(),
+      genre: newMovie.genre
+    };
     setMoviesListUpdated(previousMovieList => [...previousMovieList, movieToAdd]);
 
     setNewMovie({ title: "", genre: "" });
@@ -87,34 +89,11 @@ export const App = () => {
           value={genreFilter}
           onChange={handleFilterGenre}
         />
-        <form onSubmit={handleSubmit}>
-          <h3>Aggiungi un nuovo film</h3>
-
-          <input
-            type="text"
-            name="title"
-            placeholder=" Inserisci il titolo"
-            value={newMovie.title}
-            onChange={handleNewMovieChange}
-            required
-          />
-
-          <select
-            name="genre"
-            value={newMovie.genre}
-            onChange={handleNewMovieChange}
-            required
-          >
-            <option value="">Seleziona il genere</option>
-            <option value="Azione">Azione</option>
-            <option value="Fantascienza">Fantascienza</option>
-            <option value="Romantico">Romantico</option>
-            <option value="Thriller">Thriller</option>
-          </select>
-
-          <button>Aggiungi Film</button>
-        </form>
-
+        <AddNewMovieForm
+          newMovie={newMovie}
+          onSubmit={handleSubmit}
+          onChange={handleNewMovieChange}
+        />
       </div>
     </>
   )
