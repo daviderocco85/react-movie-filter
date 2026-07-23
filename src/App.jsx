@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { FilterTitleMovie } from './components/FilterTitleMovie';
 import { FilterGenreMovie } from './components/FilterGenreMovie';
 import './App.css';
+import { MoviesList } from './components/MoviesList';
 
 
 
@@ -74,17 +75,12 @@ export const App = () => {
           value={titleFilter}
           onChange={handleFilterTitle}
         />
-        <ul>
-          {filteredMovies.map((movie) => (
-            <li key={movie.id}>{movie.title}</li>
-          ))}
-        </ul>
+        <MoviesList filteredMovies={filteredMovies} />
         <p>Scegli i film per genere</p>
         <FilterGenreMovie
           value={genreFilter}
           onChange={handleFilterGenre}
         />
-
         <form onSubmit={handleAddMovie}>
           <h3>Aggiungi un nuovo film</h3>
 
