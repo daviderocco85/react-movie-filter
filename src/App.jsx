@@ -34,7 +34,7 @@ export const App = () => {
     genre: newMovie.genre
   };
 
-  const handleAddMovie = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     setMoviesListUpdated(previousMovieList => [...previousMovieList, movieToAdd]);
@@ -50,6 +50,12 @@ export const App = () => {
     setGenreFilter(genre.target.value)
   };
 
+  const handleNewMovieChange = (e) => {
+    setNewMovie(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
 
   useEffect(() => {
     setFilteredMovies(
@@ -81,25 +87,22 @@ export const App = () => {
           value={genreFilter}
           onChange={handleFilterGenre}
         />
-        <form onSubmit={handleAddMovie}>
+        <form onSubmit={handleSubmit}>
           <h3>Aggiungi un nuovo film</h3>
 
           <input
             type="text"
+            name="title"
             placeholder=" Inserisci il titolo"
             value={newMovie.title}
-            onChange={(e) =>
-              setNewMovie({ ...newMovie, title: e.target.value })
-            }
-
+            onChange={handleNewMovieChange}
             required
           />
 
           <select
+            name="genre"
             value={newMovie.genre}
-            onChange={(e) =>
-              setNewMovie({ ...newMovie, genre: e.target.value })
-            }
+            onChange={handleNewMovieChange}
             required
           >
             <option value="">Seleziona il genere</option>
