@@ -16,10 +16,30 @@ export const App = () => {
   const [genreFilter, setGenreFilter] = useState("");
   const [titleFilter, setTitleFilter] = useState("");
   const [filteredMovies, setFilteredMovies] = useState(movies);
+  const [moviesListUpdated, setMoviesListUpdated] = useState(movies);
+
+  const [newMovie, setNewMovie] = useState({
+    title: "",
+    genre: ""
+  });
+
+  const movieToAdd = {
+    id: moviesListUpdated.length + 1,
+    title: newMovie.title.trim(),
+    genre: newMovie.genre
+  };
+
+  const handleAddMovie = (e) => {
+    e.preventDefault();
+
+    setMoviesListUpdated(previousMovieList => [...previousMovieList, movieToAdd]);
+
+    setNewMovie({ title: "", genre: "" });
+  };
 
   useEffect(() => {
     setFilteredMovies(
-      movies
+      moviesListUpdated
         .filter(movie =>
           genreFilter === ""
             ? true
@@ -31,7 +51,7 @@ export const App = () => {
             : movie.title.toLowerCase().includes(titleFilter.toLowerCase().trim())
         )
     );
-  }, [genreFilter, titleFilter]);
+  }, [genreFilter, titleFilter, moviesListUpdated]);
 
   return (
     <>
@@ -51,6 +71,36 @@ export const App = () => {
           <option value="Romantico">Romantico</option>
           <option value="Thriller">Thriller</option>
         </select>
+        <form onSubmit={handleAddMovie}>
+          <h3>Aggiungi un nuovo film</h3>
+
+          <input
+            type="text"
+            placeholder=" Inserisci il titolo"
+            value={newMovie.title}
+            onChange={(e) =>
+              setNewMovie({ ...newMovie, title: e.target.value })
+            }
+
+            required
+          />
+
+          <select
+            value={newMovie.genre}
+            onChange={(e) =>
+              setNewMovie({ ...newMovie, genre: e.target.value })
+            }
+            required
+          >
+            <option value="">Seleziona il genere</option>
+            <option value="Azione">Azione</option>
+            <option value="Fantascienza">Fantascienza</option>
+            <option value="Romantico">Romantico</option>
+            <option value="Thriller">Thriller</option>
+          </select>
+
+          <button>Aggiungi Film</button>
+        </form>
 
       </div>
     </>
