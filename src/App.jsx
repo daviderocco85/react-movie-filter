@@ -14,20 +14,30 @@ const movies = [
 
 export const App = () => {
   const [genreFilter, setGenreFilter] = useState("");
+  const [titleFilter, setTitleFilter] = useState("");
   const [filteredMovies, setFilteredMovies] = useState(movies);
 
   useEffect(() => {
     setFilteredMovies(
-      genreFilter === ""
-        ? movies
-        : movies.filter(movie => movie.genre === genreFilter)
+      movies
+        .filter(movie =>
+          genreFilter === ""
+            ? true
+            : movie.genre === genreFilter
+        )
+        .filter(movie =>
+          titleFilter === ""
+            ? true
+            : movie.title.toLowerCase().includes(titleFilter.toLowerCase().trim())
+        )
     );
-  }, [genreFilter]);
+  }, [genreFilter, titleFilter]);
 
   return (
     <>
       <div>
         <h1>La mia lista di Film</h1>
+        <input type="text" placeholder='Filtra per titolo' value={titleFilter} onChange={e => setTitleFilter(e.target.value)} />
         <ul>
           {filteredMovies.map((movie, index) => (
             <li key={index}>{movie.title}</li>
