@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FilterTitleMovie } from './components/FilterTitleMovie';
+import { FilterGenreMovie } from './components/FilterGenreMovie';
 import './App.css';
 
 
@@ -79,13 +80,11 @@ export const App = () => {
           ))}
         </ul>
         <p>Scegli i film per genere</p>
-        <select value={genreFilter} onChange={handleFilterGenre}>
-          <option value="">Tutti i generi</option>
-          <option value="Azione">Azione</option>
-          <option value="Fantascienza">Fantascienza</option>
-          <option value="Romantico">Romantico</option>
-          <option value="Thriller">Thriller</option>
-        </select>
+        <FilterGenreMovie
+          value={genreFilter}
+          onChange={handleFilterGenre}
+        />
+
         <form onSubmit={handleAddMovie}>
           <h3>Aggiungi un nuovo film</h3>
 
