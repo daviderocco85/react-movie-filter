@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
-
+import { FilterTitleMovie } from './components/FilterTitleMovie';
 import './App.css';
+
+
+
 
 const movies = [
   { id: 1, title: 'Inception', genre: 'Fantascienza' },
@@ -37,6 +40,13 @@ export const App = () => {
     setNewMovie({ title: "", genre: "" });
   };
 
+  const handleFilterTitle = (title) => {
+    setTitleFilter(title.target.value);
+  };
+
+
+
+
   useEffect(() => {
     setFilteredMovies(
       moviesListUpdated
@@ -57,14 +67,17 @@ export const App = () => {
     <>
       <div>
         <h1>La mia lista di Film</h1>
-        <input type="text" placeholder='Filtra per titolo' value={titleFilter} onChange={e => setTitleFilter(e.target.value)} />
+        <FilterTitleMovie
+          value={titleFilter}
+          onChange={handleFilterTitle}
+        />
         <ul>
           {filteredMovies.map((movie) => (
             <li key={movie.id}>{movie.title}</li>
           ))}
         </ul>
         <p>Scegli i film per genere</p>
-        <select value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)}>
+        <select value={genreFilter} onChange={(e => setGenreFilter(e.target.value))}>
           <option value="">Tutti i generi</option>
           <option value="Azione">Azione</option>
           <option value="Fantascienza">Fantascienza</option>
