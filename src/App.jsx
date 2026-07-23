@@ -44,7 +44,9 @@ export const App = () => {
     setTitleFilter(title.target.value);
   };
 
-
+  const handleFilterGenre = (genre) => {
+    setGenreFilter(genre.target.value)
+  };
 
 
   useEffect(() => {
@@ -77,7 +79,7 @@ export const App = () => {
           ))}
         </ul>
         <p>Scegli i film per genere</p>
-        <select value={genreFilter} onChange={(e => setGenreFilter(e.target.value))}>
+        <select value={genreFilter} onChange={handleFilterGenre}>
           <option value="">Tutti i generi</option>
           <option value="Azione">Azione</option>
           <option value="Fantascienza">Fantascienza</option>
