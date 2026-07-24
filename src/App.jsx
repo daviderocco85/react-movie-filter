@@ -1,7 +1,6 @@
+
 import { useState, useEffect } from 'react';
-import { FilterTitleMovie } from './components/FilterTitleMovie';
-import { FilterGenreMovie } from './components/FilterGenreMovie';
-import './App.css';
+import { NavbarMovies } from './components/NavbarMovies';
 import { MoviesList } from './components/MoviesList';
 import { AddNewMovieForm } from './components/AddNewMovieForm';
 
@@ -49,7 +48,7 @@ export const App = () => {
   };
 
   const handleFilterGenre = (genre) => {
-    setGenreFilter(genre.target.value)
+    setGenreFilter(genre.target.value);
   };
 
   const handleNewMovieChange = (e) => {
@@ -77,24 +76,19 @@ export const App = () => {
 
   return (
     <>
-      <div>
-        <h1>La mia lista di Film</h1>
-        <FilterTitleMovie
-          value={titleFilter}
-          onChange={handleFilterTitle}
-        />
-        <MoviesList filteredMovies={filteredMovies} />
-        <p>Scegli i film per genere</p>
-        <FilterGenreMovie
-          value={genreFilter}
-          onChange={handleFilterGenre}
-        />
-        <AddNewMovieForm
-          newMovie={newMovie}
-          onSubmit={handleSubmit}
-          onChange={handleNewMovieChange}
-        />
-      </div>
+      <NavbarMovies
+        titleFilter={titleFilter}
+        genreFilter={genreFilter}
+        onTitleChange={handleFilterTitle}
+        onGenreChange={handleFilterGenre}
+      />
+      <MoviesList filteredMovies={filteredMovies} />
+      <AddNewMovieForm
+        newMovie={newMovie}
+        onSubmit={handleSubmit}
+        onChange={handleNewMovieChange}
+      />
+
     </>
   )
 };
