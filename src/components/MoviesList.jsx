@@ -1,6 +1,7 @@
 import './MoviesList.css'
 export const MoviesList = props => {
     return (
+
         <div className="movies-list-container">
             <ul>
                 {props.filteredMovies.map((movie) => (
