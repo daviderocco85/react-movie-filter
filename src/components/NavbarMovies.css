@@ -1,0 +1,51 @@
+.navbar-inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 1.5rem;
+    background-color: #5a5858;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1.5rem;
+}
+
+
+.navbar-inline h1 {
+    margin: 0;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+    margin-right: auto;
+
+}
+
+
+.navbar-filter-box-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.navbar-filter-box-inline label {
+    color: white;
+    font-size: 1.1rem;
+    margin-right: 1rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.navbar-filter-box-inline input,
+.navbar-filter-box-inline select {
+    padding: 0.5rem 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.navbar-filter-box-inline input:focus,
+.navbar-filter-box-inline select:focus {
+    border-color: #007bff;
+}
