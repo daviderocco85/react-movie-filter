@@ -2,6 +2,7 @@ import './AddNewMovieForm.css'
 
 export const AddNewMovieForm = props => {
     return (
+
         <form className="add-movie-form" onSubmit={props.onSubmit}>
             <h3>Aggiungi un nuovo film</h3>
             <div className="form-row">
